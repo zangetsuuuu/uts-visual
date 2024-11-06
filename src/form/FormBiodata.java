@@ -86,7 +86,7 @@ public class FormBiodata extends javax.swing.JFrame {
 
         jLabel6.setText("Prodi:");
 
-        cmbProdi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Program Studi", "Item 2", "Item 3", "Item 4" }));
+        cmbProdi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Program Studi --", "Teknik Informatika", "Teknik Industri", "Teknik Lingkungan", "Manajemen", "Hukum" }));
 
         jLabel7.setText("No. Telp");
 
@@ -106,6 +106,11 @@ public class FormBiodata extends javax.swing.JFrame {
 
         btnUpdate.setBackground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
@@ -117,21 +122,39 @@ public class FormBiodata extends javax.swing.JFrame {
 
         btnExit.setBackground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         btnClear.setBackground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         tbl_biodata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Nama", "NIM", "TTL", "Jenis Kelamin", "Prodi", "No Telp", "Alamat"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tbl_biodata.setGridColor(new java.awt.Color(204, 204, 204));
         tbl_biodata.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -144,11 +167,7 @@ public class FormBiodata extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(470, 470, 470)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(mainPanelLayout.createSequentialGroup()
@@ -182,16 +201,20 @@ public class FormBiodata extends javax.swing.JFrame {
                         .addComponent(btnClear)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExit)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(551, 551, 551)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(44, 44, 44)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,7 +225,7 @@ public class FormBiodata extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(tfNim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(tfTTL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -230,7 +253,7 @@ public class FormBiodata extends javax.swing.JFrame {
                             .addComponent(btnExit)
                             .addComponent(btnClear)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -310,8 +333,55 @@ public class FormBiodata extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbl_biodataMouseClicked
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clearForm();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        int confirmed = JOptionPane.showConfirmDialog(this, "Yakin ingin keluar dari program?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION);
+        if (confirmed == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        int row = tbl_biodata.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih baris yang akan dihapus!");
+            return;
+        }
+
+        String jekel = rbLaki.isSelected() ? "Laki - Laki" : "Perempuan";
+
+        try {
+            String sql = "UPDATE mahasiswa SET nama = ?, ttl = ?, jekel = ?,alamat = ?, notelp = ? WHERE nim = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setString(1, tfNama.getText());
+            pst.setString(2, tfTTL.getText());
+            pst.setString(3, jekel);
+            pst.setString(4, taAlamat.getText());
+            pst.setString(5, tfTelp.getText());
+            pst.setString(6, tfNim.getText());
+
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(this, "Data berhasil diperbarui!");
+                tampilData();
+                clearForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Data gagal diperbarui.");
+            }
+
+            pst.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
     private void tampilData() {
         DefaultTableModel kolomtabel = new DefaultTableModel();
+        kolomtabel.setRowCount(0);
         kolomtabel.addColumn("No.");
         kolomtabel.addColumn("Nama");
         kolomtabel.addColumn("NIM");
@@ -365,7 +435,7 @@ public class FormBiodata extends javax.swing.JFrame {
             try {
                 String sql = "DELETE FROM mahasiswa WHERE nim = ?";
                 pst = conn.prepareStatement(sql);
-                pst.setString(1, tfNim.getText()); // Mengatur parameter nim
+                pst.setString(1, tfNim.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
                 clearForm();
